@@ -14,6 +14,10 @@ forkedDBUpdateWorker.on('message', (message) => {
 
 let port = process.env.PORT || 3000;
 
+app.get('/', (req, res) => {
+	res.redirect('/api/courses');
+});
+
 app.get('/api/courses', (req, res) => {
     let records = db.getALlCourses();
     res.json(records);
