@@ -52,7 +52,7 @@
                         /api/notfilledcourses/bytime/s800
                     </td>
                     <td>
-                        Given a time, returns the not filled up courses with that timing. <br>
+                        Given a time, returns the not filled up sections with that timing. <br>
                     </td>
                 </tr>
                 <tr>
@@ -66,6 +66,15 @@
                     <td>
                         Given a course code, returns the not filled up sections of that course. <br>
                     </td>
+                </tr>
+                <tr>
+                    <td>/api/notfilledcourses/bynameandtime/:course/:time</td>
+                    <td>:course, :time</td>
+                    <td>
+                        /api/notfilledcourses/bynameandtime/cse323/st940
+                        /api/notfilledcourses/bynameandtime/act201/mw1120
+                    </td>
+                    <td>Given a course code and corresponding start time, returns the details of such non-filled sections of courses.</td>
                 </tr>
             </tbody>
         </table>

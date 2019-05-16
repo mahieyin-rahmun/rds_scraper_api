@@ -61,10 +61,22 @@ var getAvailableCourseByName = function(courseCode) {
     return records;
 }
 
+var getAvailableCourseByNameAndTime = function(courseCode, timing) {
+    timing = parseTime(timing);
+    let records = getALlCourses();
+
+    if (!records.status) {
+        records = records.filter(record => record.name.includes(courseCode) && record.time.includes(timing) && record.capacity_remaining > 0);
+    }
+
+    return records;
+}
+
 module.exports = {
     refreshDatabase,
     getALlCourses,
     getByCourseCode,
     getAvailableCourseByTiming,
-    getAvailableCourseByName
+    getAvailableCourseByName,
+    getAvailableCourseByNameAndTime
 };
