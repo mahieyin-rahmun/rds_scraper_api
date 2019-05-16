@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>RDS Scraper API Reference</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+</head>
+<body>
+    <div class="container" style="margin-top: 5rem; margin-bottom: 5rem;">
+        <h1 class="title">Uh...what is this?</h1>
+        <h3>You are probably here because you mistyped a route or expected to see a homepage.</h3>
+        <br>
+        <br>
+        <h1 class="title">Okay...what does this website do?</h1>
+        <h3>This is simply an API that serves data scraped from <a href="https://rds2.northsouth.edu/index.php/common/showofferedcourses">RDS Offered Courses List of North South University</a> in JSON format. And we all love JSON, right?</h3>
+        <br>
+        <br>
+        <h1 class="title">API References</h1>
+        <h3>The API endpoints so far are:</h3>
+        <br>
+        <table class="table is-hoverable is-bordered">
+            <thead>
+                <tr>
+                    <th>Route</th>
+                    <th>Parameters</th>
+                    <th>Example</th>
+                    <th>What it gives back</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>/api/courses</td>
+                    <td>None</td>
+                    <td>/api/courses</td>
+                    <td>Gives back the entire list of courses.</td>
+                </tr>
+                <tr>
+                    <td>/api/courses/:coursecode</td>
+                    <td>:coursecode</td>
+                    <td>/api/courses/cse465</td>
+                    <td>Given a course code, returns all the sections offered for it.</td>
+                </tr>
+                <tr>
+                    <td>/api/notfilledcourses/:timing</td>
+                    <td>:timing</td>
+                    <td>
+                        /api/notfilledcourses/st940 <br>
+                        /api/notfilledcourses/mw1120 <br>
+                        /api/notfilledcourses/s800
+                    </td>
+                    <td>
+                        Given a time, returns the not filled up courses with that timing. <br>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+        <h1 class="title">Okay...What are the bugs?</h1>
+        <h3>Randomly, the python scrapper will fail to dump the entire JSON content into the database. In that case, obviously, the JSON parser call will fail. Simply wait for a minute before retrying.</h3>
+    </div>
+</body>
+</html>
