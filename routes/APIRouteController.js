@@ -23,4 +23,10 @@ router.get('/notfilledcourses/:timing', (req, res) => {
     res.json(records);
 });
 
+router.get('/notfilledcourses/:course', (req, res) => {
+    let courseName = (req.params.course).toUpperCase();
+    let records = db.getAvailableCourseByName(courseName);
+    res.json(records);
+});
+
 module.exports = router;

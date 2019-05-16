@@ -32,7 +32,7 @@ var getALlCourses = function () {
 
 var getByCourseCode = function(courseCode) {
     let records = getALlCourses();
-    
+
     if (!records.status) {
         records = records.filter(record => record.name.includes(courseCode));
     }
@@ -51,9 +51,20 @@ var getAvailableCourseByTiming = function(timing) {
     return records;
 };
 
+var getAvailableCourseByName = function(courseCode) {
+    let records = getALlCourses();
+
+    if (!records.status) {
+        records = records.filter(record => record.name.includes(courseCode) && record.capacity_remaining > 0);
+    }    
+
+    return records;
+}
+
 module.exports = {
     refreshDatabase,
     getALlCourses,
     getByCourseCode,
-    getAvailableCourseByTiming
+    getAvailableCourseByTiming,
+    getAvailableCourseByName
 };
