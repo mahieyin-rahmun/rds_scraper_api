@@ -29,7 +29,7 @@ router.get('/notfilledcourses/byname/:course', (req, res) => {
     res.json(records);
 });
 
-router.get('/notfilledcourses/bynameandtime/:course/:time', (req, res) => {
+router.get('/notfilledcourses/bynameandtime/:course/:timing', (req, res) => {
     let courseName = (req.params.course).toUpperCase();
     let timing = req.params.timing;
     let records = db.getAvailableCourseByNameAndTime(courseName, timing);
