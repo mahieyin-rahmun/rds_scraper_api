@@ -17,13 +17,13 @@ router.get('/courses/:course', (req, res) => {
     res.json(records);
 });
 
-router.get('/notfilledcourses/:timing', (req, res) => {
+router.get('/notfilledcourses/bytime/:timing', (req, res) => {
     let timing = req.params.timing;
     let records = db.getAvailableCourseByTiming(timing);
     res.json(records);
 });
 
-router.get('/notfilledcourses/:course', (req, res) => {
+router.get('/notfilledcourses/byname/:course', (req, res) => {
     let courseName = (req.params.course).toUpperCase();
     let records = db.getAvailableCourseByName(courseName);
     res.json(records);
