@@ -5,7 +5,7 @@ const { parseTime } = require('../utils/TimeParser');
 
 const pythonScrapperPath = path.resolve(__dirname, '../scrapper/scrapper_controller.py');
 
-var refreshDatabase = function() {
+var refreshDatabase = function () {
     let process = spawn('python', [pythonScrapperPath]);
 
     process.stdout.on('data', (data) => {
@@ -17,7 +17,7 @@ var refreshDatabase = function() {
     });
 };
 
-var getALlCourses = function () {
+var getAllCourses = function () {
     let records = fs.readFileSync(path.join(__dirname, '../data.json'));
     try {
         records = JSON.parse(records);
@@ -30,8 +30,8 @@ var getALlCourses = function () {
     return records;
 };
 
-var getByCourseCode = function(courseCode) {
-    let records = getALlCourses();
+var getByCourseCode = function (courseCode) {
+    let records = getAllCourses();
 
     if (!records.status) {
         records = records.filter(record => record.name.includes(courseCode));
@@ -40,43 +40,54 @@ var getByCourseCode = function(courseCode) {
     return records;
 };
 
-var getAvailableCourseByTiming = function(timing) {
+var getAvailableCourseByTiming = function (timing) {
     timing = parseTime(timing);
-    let records = getALlCourses();
-    
+    let records = getAllCourses();
+
     if (!records.status) {
         records = records.filter(record => record.time.includes(timing) && record.capacity_remaining > 0);
-    }    
+    }
 
     return records;
 };
 
-var getAvailableCourseByName = function(courseCode) {
-    let records = getALlCourses();
+var getAvailableCourseByName = function (courseCode) {
+    let records = getAllCourses();
 
     if (!records.status) {
         records = records.filter(record => record.name.includes(courseCode) && record.capacity_remaining > 0);
-    }    
+    }
 
     return records;
-}
+};
 
-var getAvailableCourseByNameAndTime = function(courseCode, timing) {
+var getAvailableCourseByNameAndTime = function (courseCode, timing) {
     timing = parseTime(timing);
-    let records = getALlCourses();
+    let records = getAllCourses();
 
     if (!records.status) {
         records = records.filter(record => record.name.includes(courseCode) && record.time.includes(timing) && record.capacity_remaining > 0);
     }
 
     return records;
-}
+};
+
+var getByCourseNameandSectionNumber = function (courseCode, sectionNumber) {
+    let records = getAllCourses();
+
+    if (!records.status) {
+        records = records.filter(record => record.name.includes(courseCode) && sectionNumber === record.section);
+    }
+
+    return records;
+};
 
 module.exports = {
     refreshDatabase,
-    getALlCourses,
+    getAllCourses,
     getByCourseCode,
     getAvailableCourseByTiming,
     getAvailableCourseByName,
-    getAvailableCourseByNameAndTime
+    getAvailableCourseByNameAndTime,
+    getByCourseNameandSectionNumber
 };

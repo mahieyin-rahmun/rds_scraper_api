@@ -1,9 +1,10 @@
 const express = require('express');
 const cors = require('cors');
-const APIRouter = require('./routes/APIRouteController');
-const IndexRouter = require('./routes/IndexRouteController');
 const { fork } = require('child_process');
 const path = require('path');
+
+const APIRouter = require('./routes/APIRouteController');
+const IndexRouter = require('./routes/IndexRouteController');
 
 app = express();
 app.use(cors());
