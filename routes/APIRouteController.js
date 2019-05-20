@@ -11,19 +11,17 @@ router.get('/courses', (req, res) => {
     res.json(records);
 });
 
-router.get(/\/courses\/([a-z, A-Z]{1,3}[\d]{1,3})/, (req, res) => {
-    let courseName = (req.params[0]).toUpperCase();
-    let records = db.getByCourseCode(courseName);
-    res.json(records);
-});
-
 router.get(/\/courses\/([a-z, A-Z]{1,3}[\d]{1,3})\/([\d]{1,2})/, (req, res) => {
     let courseName = req.params[0].toUpperCase();
     let sectionNumber = req.params[1];
 
-    console.log(courseName, sectionNumber);
-
     let records = db.getByCourseNameandSectionNumber(courseName, sectionNumber);
+    res.json(records);
+});
+
+router.get(/\/courses\/([a-z, A-Z]{1,3}[\d]{1,3})/, (req, res) => {
+    let courseName = (req.params[0]).toUpperCase();
+    let records = db.getByCourseCode(courseName);
     res.json(records);
 });
 
